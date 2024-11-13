@@ -1,7 +1,7 @@
 ---
 title: "Select a Project of your Choice"
 institute: "UNSW Data Science Hub"
-date: "21-11-2024"
+date: "25-11-2024"
 output:
   xaringan::moon_reader:
     css: [xaringan-themer.css, "css/footer.css"]
@@ -79,58 +79,9 @@ class: inverse, center, middle
 
 ---
 
-## Goal: Understand the problem and get the data
+<!-- slide:3 Workshop Weekly schedule -->
 
-(Monday / Tuesday)
-
-- Problem description
-  - Understand the context
-  - What is the motivation?
-  - Questions to answer
-- Data acquisition
-  - Explore the data source(s)
-  - Get the data (download, copy or install...)
-- Data preparation / cleaning
-  - Filter and select cases/variables
-  - Outliers
-  - Transformation of variables
-
----
-
-## Goal: Discover patterns in your data
-
-(Tuesday)
-
-- Exploratory data analysis (EDA)
-  - Describe properties of the variables
-  - Quantitative/qualitative
-  - Data summaries
-  - Visual summaries
-
----
-
-## Goal: Test potential solutions
-
-(Wednesday)
-
-- Data modeling
-  - Potential explanations (models)
-  - Does the data fit the model(s)?
-  - Which is the best model
-
----
-
-## Goal: Tell the story
-
-(Thursday and Friday)
-- Visualisation
-  - View data from different angles
-  - Use colours and other aesthetics
-  - Combine data and models in plots
-  - Highlight your findings
-- Communication
-  - Tell your story: problem, data, model and result
-  - Conclusions supported by the data!
+<img src="images/week_details.jpg" class="custom-image">
 
 ---
 
@@ -734,6 +685,13 @@ Crabs were tracked using acoustic telemetry, which involved attaching tags with 
 
 Data provided by uDASH staff.
 
+```{r echo=FALSE}
+data_crab <- read.csv("data/mud-crab-tracking.csv") |>
+mutate(
+  time = ymd_hms(time),
+  tod = lubridate::hour(time)) 
+```
+
 #### Cleaning and transformation
 
 Data types and formats for handling date and time are particularly important for data analysis.
@@ -756,26 +714,71 @@ Potential differences in behavior between individual crabs (or possibly between 
 #### Visualise
 
 
+.pull-left[
+
+```{r crab-eda, echo=FALSE, fig.width=5, fig.height=5}
+
+ggplot( data=data_crab, 
+  aes(x=x, y=y, colour=crab))+
+  
+  geom_path()+ 
+  
+  labs( x = "Easting (m)",
+    y = "Northing (m)",
+    colour = "Crab Id")+
+  
+  theme( text=element_text(size=8),
+    axis.text = element_text(size =8),   
+    axis.title = element_text(size =8),   
+    legend.text = element_text(size =8),  
+    legend.title = element_text(size =8),
+    legend.position = "bottom",
+    plot.margin = margin(5,5,5,5,"pt")) 
+
+```
+]
+.pull-right[
+
+```{r crab-tempEffect, echo=FALSE, fig.width=5, fig.height=5}
+
+ggplot(data = data_crab, 
+  aes(x = temperature_c, #explanatory variable
+      y = accel, #dependent variable
+      colour = crab))+ #colour individual crab
+  geom_point()+
+  labs(x = "Water temperature (°C)",
+    y = expression(
+    paste("Acceleration (m s"^-2,")")),
+    colour = "Crab")+
+  theme( text=element_text(size=8),
+    axis.text = element_text(size =8),   
+    axis.title = element_text(size =8),   
+    legend.text = element_text(size =8),  
+    legend.title = element_text(size =8),
+    legend.position = "bottom",
+    plot.margin = margin(5,5,5,5,"pt")) 
+```
+]
 ---
 
 class: middle
 
 # Choose your project
 
-- `r fa(name = "hand-holding-heart")` Psychology: Emotions during the pandemic [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990398)
+- `r fa(name = "hand-holding-heart")` Psychology: Emotions during the pandemic 
 
 
-- `r fa(name = "lightbulb")` Business insights: Small automotive business [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990395)
+- `r fa(name = "lightbulb")` Business insights: Small automotive business 
 
-- `r fa(name = "gamepad")` Entertainment: Video Games reviews [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990394)
-
-
-- `r fa(name = "arrow-trend-up")` Economics: Big economic data [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990530)
+- `r fa(name = "gamepad")` Entertainment: Video Games reviews 
 
 
-- `r fa(name = "cloud-sun-rain")` Climate: Weather & Air Quality in Schools [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990379)
+- `r fa(name = "arrow-trend-up")` Economics: Big economic data 
 
-- <img src="images/crab-svgrepo-com.svg" alt="Mud Crab Icon" style="width: 1em; height: 1em;"/> Ecology: Mud Crab Tracking [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/)
+
+- `r fa(name = "cloud-sun-rain")` Climate: Weather & Air Quality in Schools 
+
+- <img src="images/crab-svgrepo-com.svg" alt="Mud Crab Icon" style="width: 1em; height: 1em;"/> Ecology: Mud Crab Tracking 
 
 
 ---
