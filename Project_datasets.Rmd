@@ -10,6 +10,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: true
+    self_contained: true
 editor_options:
   chunk_output_type: console
 ---
@@ -73,15 +74,9 @@ class: inverse, center, middle
 - Data preparation
   - Data cleaning
   - Transformation
-- Exploratory data analysis
+- Exploratory data analysis (EDA)
 - Data modeling
 - Visualisation and communication
-
----
-
-<!-- slide:3 Workshop Weekly schedule -->
-
-<img src="images/week_details.jpg" class="custom-image">
 
 ---
 
