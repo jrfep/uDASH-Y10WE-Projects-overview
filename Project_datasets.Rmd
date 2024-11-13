@@ -1,5 +1,5 @@
 ---
-title: "Choose your project"
+title: "Select a Project of your Choice"
 institute: "UNSW Data Science Hub"
 date: "21-11-2024"
 output:
@@ -7,7 +7,6 @@ output:
     css: [xaringan-themer.css, "css/footer.css"]
     lib_dir: libs
     nature:
-      countdown: 60000
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: true
@@ -156,22 +155,26 @@ class: inverse, center, middle
 
 # `r fa(name = "hand-holding-heart")` Psychology: Emotions during the pandemic
 
-> A robust finding in emotion literature is the relationship between age and improved emotional experience... it is well-established that older individuals report more elevated emotional wellbeing than younger individuals...
+>In studies of emotions, a robust finding is that there is a relationship between aging and improved emotional experience. It's a well-recognized fact that older people often report higher levels of emotional wellbeing compared to younger people.
 
-***Does the emotional wellbeing advantage of older adults persisted throughout the pandemic?***
+
+***During the pandemic, did older people still feel better emotionally than younger ones?***
 
 ---
 
 ## Emotions ...
 
-- Primary variables:
+945 participants with 107 variables!
+
+- Primary variables: 16 positive and 13 negative emotions 
   - frequency and intensity of positive emotions
   - frequency and intensity of negative emotions
+  - average frequency and intensity of positive and negative emotions
   - age
 - Other variables (personality traits):
   - Openness,
-  - Conscientiousness,
-  - Extraversion,
+  - Conscientiousness
+  - Extraversion
   - Agreeableness and
   - Emotional Stability
 
@@ -247,15 +250,16 @@ class: inverse, center, middle
 
 ## Small business ...
 
-This is a dataset of the jobs performed by a small automotive business located in Botany in 2010-2020.  The dataset is itemised by each job performed and further by invoice number such that several jobs (and several cars) can be on a single invoice.
+This is a dataset of the jobs performed by a small automotive business located in Botany in 2010-2020. The dataset is itemised by each job performed and further by invoice number such that several jobs (and several cars) can be on a single invoice. The dataset also contains basic information about each car (make, model, date of last service, odometer reading), information about the date and cost of the job, and the postcode of the customer.
 
 - Variables of interest:
-  - Date of the job,
-  - Cost of the job,
+  - Date of the job
+  - Cost of the job
+
 - Other variables:
-  - Postcode of costumer,
+  - Postcode of costumer
   - Car make and model
-  - Date of last service,
+  - Date of last service
   - Odometer reading
 
 ---
@@ -278,16 +282,16 @@ auto_data <- read_csv("data/small_business_invoices.csv") |>
 
 #### Cleaning and transformation
 
-The dataset was entered by hand and thus has inconsistencies and omissions that will require cleaning.  Some data cleaning has already been performed. TO DO: Assign data type (numeric, factor, date), handle missing information, group and summarise, etc.
+The dataset was entered by hand and thus has inconsistencies and omissions that will require cleaning.  Some data cleaning has already been performed. 
 
 
 #### Explore
 
-Histogram of variables, etc
+Histograms to show the spread and frequency of vehicle repair costs. Transform data to improve Visualisation.
 
 ####  Model
 
-Linear regression
+Linear regression inquiry: Does the year of manufacture of a vehicle influence its repair costs?
 
 ---
 
@@ -322,8 +326,6 @@ ggplot(auto_data) +
 ]
 
 ---
-
----
 class: inverse, center, middle
 
 # `r fa(name = "gamepad")` Entertainment: Video Games Data
@@ -339,10 +341,11 @@ class: inverse, center, middle
 The dataset presented here are the metascores of videogames from 2000 to 2018
 
 - Variables of interest:
-  - metascore: averaged scores from reviews,
-  - userscore: averaged scores from user ratings,
+  - metascore: averaged scores from reviews
+  - userscore: averaged scores from user ratings
+
 - Other variables:
-  - Console
+  - Console name
   - Release date
   - Name of the game
 
@@ -352,8 +355,10 @@ The dataset presented here are the metascores of videogames from 2000 to 2018
 
 #### Data
 
-The data is available from
-[`r fa(name = "link")` kaggle](https://www.kaggle.com/datasets/destring/metacritic-reviewed-games-since-2000), will be provided by uDASH staff.
+The data has been assembled from two datasets:
+- Metacritics scores [`r fa(name = "link")` kaggle](https://www.kaggle.com/datasets/destring/metacritic-reviewed-games-since-2000), 
+- Video game sales [`r fa(name = "link")` kaggle](https://www.kaggle.com/datasets/gregorut/videogamesales),
+
 
 
 ```{r message=FALSE, echo=FALSE}
@@ -418,7 +423,6 @@ ggplot(games_data) +
 ]
 
 
----
 
 ---
 
@@ -426,7 +430,7 @@ class: inverse, center, middle
 
 # `r fa(name = "arrow-trend-up")` Economics: Big economic data
 
-> FRED-MD ("Federal Reserve Economic Data Monthly Database") is a publicly available dataset. Originally designed for the analysis of ***big economic data***, the dataset contains more than one hundred features.
+> FRED-MD is a comprehensive collection of economic data compiled monthly by the Federal Reserve. This data is ideal for anyone interested in how the economy has changed over time. With information dating from 1959 to 2023, it covers a wide range of topics like employments, stock market prices, and production, offering a detailed look at the U.S. economy's history. 
 
 ***What drives economic cycles?***
 
@@ -497,7 +501,7 @@ if (file.exists(dataset.file)) {
 
 #### Cleaning and transformation
 
-Select a subset of features, exclude outliers.
+Select a manageable collection of key economic indicators, exclude outliers
 
 #### Explore
 
@@ -505,7 +509,7 @@ Univariate statistics, time series.
 
 #### Model
 
-Make data _stationary_ (more suitable for regression), apply multiple linear regression, select best explanatory variables
+ Which factors have the most influence on the unemployment rate's ups and downs?
 
 ```{r include=FALSE}
 eco_data_transformed <- eco_data %>%
@@ -553,16 +557,13 @@ ggplot(data=eco_data_transformed,
 
 ---
 
-
----
-
 class: inverse, center, middle
 
 # `r fa(name = "cloud-sun-rain")` Climate: Weather & Air Quality in Schools
 
 > Good air quality in Sydney was something that many of us took for granted until the Black Summer Bushfires in 2019-2020. From serious health effects to general inconvenience, it was suddenly hard to ignore just how important the air we breathe truly is. However, fires aren’t the only phenomenon that can impact our air quality: urbanisation, pollution, and weather events can all influence our health and wellbeing.
 
-***Can we predict air quality at UNSW using information about the weather?***
+***Can we predict air quality in Sydney using information about the weather?***
 
 ---
 
@@ -603,7 +604,8 @@ airqual <- read_csv("data/air-quality.csv") |>
 
 #### Cleaning and transformation
 
-Fix dates, reshape table (from wide to long format), filter missing data...
+- Time Twist: convert time format from UTC to Sydney local time.
+- Data Detangle: instead of cluttered 116 columns- one new column for location and 12 other columns, each for a different climate  variable!
 
 ```{r message=FALSE, echo=FALSE}
 
@@ -623,7 +625,7 @@ airqual_wide <- airqual |>
 
 Relationships between key variables for each site.
 
-```{r, echo=FALSE}
+```{r, message=FALSE, echo=FALSE}
 school_with_airqual_measurements <- airqual_wide %>%
   group_by(location) %>%
   select(pm10) %>% # using pm10 to check if have any air quality measurements
@@ -697,14 +699,11 @@ cbind(unsw_data, pred = predict(model, newdata = unsw_data)) %>%
 
 ---
 
-
----
-
 class: inverse, center, middle
 
 #  <img src="images/crab-svgrepo-com.svg" alt="Mud Crab Icon" style="width: 1em; height: 1em;"/> Ecology: Mud Crab Tracking
 
->Environmental factors such as water temperature, conductivity, and time of day significantly influence the behavioral patterns of Giant Mud Crabs, including their movement, activity levels, and periods of heightened activity
+> Environmental factors such as water temperature, conductivity, and time of day significantly influence the behavioral patterns of Giant Mud Crabs, including their movement, activity levels, and periods of heightened activity
 
 *** Are there significant correlations or patterns that can be explored to understand response to climate variability? *** 
 
@@ -768,7 +767,7 @@ class: middle
 
 - `r fa(name = "lightbulb")` Business insights: Small automotive business [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990395)
 
-- `r fa(name = "gamepad")` Entertainment: Video Games reviews [`r fa(name = "cloud-arrow-up")`](https://posit.cloud/content/4990394)
+- `r fa(name = "gamepad")` Entertainment: Video Games reviews [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990394)
 
 
 - `r fa(name = "arrow-trend-up")` Economics: Big economic data [`r fa(name = "cloud-arrow-down")`](https://posit.cloud/content/4990530)
